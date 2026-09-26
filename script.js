@@ -162,8 +162,6 @@ function initUploadDemo() {
 
   if (!dropzone || !fileInput) return;
 
-  dropzone.addEventListener('click', () => fileInput.click());
-
   fileInput.addEventListener('change', (e) => {
     if (e.target.files && e.target.files[0]) handleUploadedFile(e.target.files[0]);
   });
@@ -187,7 +185,10 @@ function initUploadDemo() {
     if (file) handleUploadedFile(file);
   });
 
-  if (resetBtn) resetBtn.addEventListener('click', resetSpecimenToDefault);
+  if (resetBtn) resetBtn.addEventListener('click', () => {
+    fileInput.value = '';
+    resetSpecimenToDefault();
+  });
   if (downloadBtn) downloadBtn.addEventListener('click', () => {
     if (!cloakCanvas) return;
     const link = document.createElement('a');
