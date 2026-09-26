@@ -12,30 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* 1. Theme Management (Pure Monochrome Invert) */
 function initTheme() {
+  const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('veriself-monograph-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
-    document.documentElement.classList.remove('dark');
-    document.documentElement.classList.add('light');
-  } else {
-    document.documentElement.classList.remove('light');
-    document.documentElement.classList.add('dark');
-  }
+  const applyTheme = (theme) => {
+    const isLight = theme === 'light';
+    root.classList.toggle('light', isLight);
+    root.classList.toggle('dark', !isLight);
+    root.style.colorScheme = isLight ? 'light' : 'dark';
+    localStorage.setItem('veriself-monograph-theme', isLight ? 'light' : 'dark');
+  };
+
+  applyTheme(savedTheme === 'light' || (!savedTheme && !prefersDark) ? 'light' : 'dark');
 
   if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isLight = document.documentElement.classList.contains('light');
-      if (isLight) {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('veriself-monograph-theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        localStorage.setItem('veriself-monograph-theme', 'light');
-      }
+    themeToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      applyTheme(root.classList.contains('light') ? 'dark' : 'light');
     });
   }
 }
