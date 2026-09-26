@@ -547,8 +547,9 @@ function initAdvancedDemo(){advInitCandidate();adv('advForensicBtn').onclick=()=
 
 
 /* 7. Optional live FastAPI bridge */
+const DEFAULT_API_BASE = 'https://veriself.onrender.com';
 function getApiBase() {
-  return (localStorage.getItem('veriself-api-base') || adv('apiBaseUrl')?.value || '').trim().replace(/\/$/, '');
+  return (localStorage.getItem('veriself-api-base') || adv('apiBaseUrl')?.value || DEFAULT_API_BASE).trim().replace(/\/$/, '');
 }
 
 function setApiStatus(text) {
@@ -559,7 +560,10 @@ function setApiStatus(text) {
 async function apiRequest(path, options = {}) {
   const base = getApiBase();
   if (!base) throw new Error('Backend URL is not configured.');
-  const response = await fetch(base + path, options);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  const response = await fetch(base + path, { ...options, mode: 'cors', cache: 'no-store', signal: controller.signal });
+  clearTimeout(timeout);
   const body = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(body.detail || 'Backend request failed.');
   return body;
@@ -573,7 +577,7 @@ function initApiBridge() {
   const syncCandidate = adv('syncCandidateBtn');
   if (!input) return;
 
-  input.value = localStorage.getItem('veriself-api-base') || '';
+  input.value = localStorage.getItem('veriself-api-base') || DEFAULT_API_BASE;
 
   save?.addEventListener('click', () => {
     const value = input.value.trim().replace(/\/$/, '');
@@ -593,7 +597,7 @@ function initApiBridge() {
       setApiStatus(data.status === 'healthy' ? 'ONLINE' : 'ERROR');
     } catch (err) {
       console.error('Backend health check failed:', err);
-      setApiStatus('OFFLINE');
+      setApiStatus('OFFLINE — CHECK URL/CORS');
     }
   });
 
