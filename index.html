@@ -1,635 +1,330 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VERISELF — An Editorial on Biometric Defense & Machine Invisibility</title>
-  <meta name="description" content="A monograph and forensic platform on adversarial pixel cloaking, perceptual hashing, and legal resistance against non-consensual biometric indexing.">
+  <title>VERISELF — Digital Identity Defense</title>
+  <meta name="description" content="VeriSelf protects digital identity media with on-device photo cloaking, biometric face-landmark scanning, and perceptual hash verification.">
   <link rel="icon" type="image/svg+xml" href="./logo.svg">
   <link rel="stylesheet" href="./style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Masthead Bar -->
-  <header class="masthead">
-    <div class="masthead-top">
-      <div class="masthead-meta">
-        <span>MONOGRAPH NO. 04</span>
-        <span class="divider">/</span>
-        <span>INDEX REF: VS-2026-C2PA</span>
-        <span class="divider">/</span>
-        <span>AUTUMN 2026 EDITION</span>
-      </div>
-      <div class="masthead-meta right">
-        <span>DEFENSE: AUTONOMOUS</span>
-        <span class="divider">/</span>
-        <button id="themeToggle" class="text-toggle" aria-label="Toggle theme">
-          <span class="theme-label-dark">INVERT [WHITE]</span>
-          <span class="theme-label-light">INVERT [BLACK]</span>
-        </button>
-      </div>
+<header class="masthead">
+  <div class="masthead-top">
+    <div class="masthead-meta">
+      <span>VERISELF</span><span class="divider">/</span>
+      <span>DIGITAL IDENTITY DEFENSE</span>
+    </div>
+    <div class="masthead-meta right">
+      <span>ON-DEVICE PROCESSING</span><span class="divider">/</span>
+      <button id="themeToggle" class="text-toggle" aria-label="Toggle theme">
+        <span class="theme-label-dark">INVERT [WHITE]</span>
+        <span class="theme-label-light">INVERT [BLACK]</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="masthead-main">
+    <div class="brand-block">
+      <a href="#" class="brand-title">VERISELF</a>
+      <span class="brand-sub">Biometric Likeness Defense & Forensic Verification</span>
     </div>
 
-    <div class="masthead-main">
-      <div class="brand-block">
-        <a href="#" class="brand-title">VERISELF</a>
-        <span class="brand-sub">Biometric Likeness Defense & Forensic Provenance Archive</span>
+    <nav class="editorial-nav">
+      <a href="#protect"><span class="nav-idx">01</span> Protect</a>
+      <a href="#biometric"><span class="nav-idx">02</span> Biometric</a>
+      <a href="#verify"><span class="nav-idx">03</span> Verify</a>
+      <a href="https://github.com/keke2204/VERISELF" target="_blank" rel="noopener noreferrer" class="nav-github">Repository ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-editorial">
+    <div class="editorial-container">
+      <div class="hero-lead-row">
+        <div class="hero-left-col">
+          <span class="chapter-label">DIGITAL IDENTITY DEFENSE SYSTEM</span>
+          <h1 class="hero-headline">Protect the face.<br>Verify the media.</h1>
+          <p class="hero-dek">
+            Upload a photo, protect it locally, scan its biometric landmarks, and verify visual matches using perceptual hashes.
+          </p>
+          <div class="hero-actions">
+            <a href="#protect" class="editorial-btn">Protect a Photo ↓</a>
+            <a href="#biometric" class="editorial-link">Open Biometric Scan ↓</a>
+          </div>
+        </div>
+
+        <div class="hero-right-col">
+          <div class="curator-card">
+            <div class="curator-header">
+              <span class="curator-tag">ACTIVE FEATURES</span>
+              <span class="curator-id">VS / 2026</span>
+            </div>
+            <div class="curator-specs">
+              <div class="spec-row">
+                <span class="spec-k">PHOTO PROTECTION</span>
+                <span class="spec-v">LOCAL CLOAKING</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">BIOMETRIC OPTION</span>
+                <span class="spec-v">FACE + LANDMARKS</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">MEDIA VERIFICATION</span>
+                <span class="spec-v">PERCEPTUAL HASH</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">UPLOAD PRIVACY</span>
+                <span class="spec-v">BROWSER PROCESSING</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <nav class="editorial-nav">
-        <a href="#thesis"><span class="nav-idx">01</span> Thesis</a>
-        <a href="#specimen"><span class="nav-idx">02</span> The Specimen</a>
-        <a href="#mechanics"><span class="nav-idx">03</span> Mechanics</a>
-        <a href="#calculator"><span class="nav-idx">04</span> Hash Vault</a>
-        <a href="#statute"><span class="nav-idx">05</span> Legal Instrument</a>
-        <a href="#colophon"><span class="nav-idx">06</span> Colophon</a>
-        <a href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY" target="_blank" rel="noopener noreferrer" class="nav-github">Repository ↗</a>
-      </nav>
+
+      <div class="hero-rule-box">
+        <div class="rule-col">
+          <span class="rule-num">01</span>
+          <p>Upload your portrait and create a locally processed protected copy.</p>
+        </div>
+        <div class="rule-col">
+          <span class="rule-num">02</span>
+          <p>Run the biometric scan to detect a face and visualize facial landmarks.</p>
+        </div>
+        <div class="rule-col">
+          <span class="rule-num">03</span>
+          <p>Compare perceptual hashes to check whether two image assets are visually related.</p>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- HERO / TITLE PAGE -->
-    <section class="hero-editorial">
-      <div class="editorial-container">
-        
-        <div class="hero-lead-row">
-          <div class="hero-left-col">
-            <span class="chapter-label">TREATISE ON MACHINE VISION RESISTANCE</span>
-            <h1 class="hero-headline">
-              The Inviolable Face.
-            </h1>
-            <p class="hero-dek">
-              An adversarial framework engineered to render human portraiture cognitively transparent to human observers while mathematically unparseable to deep neural facial recognition and generative synthesis pipelines.
-            </p>
-            
-            <div class="hero-actions">
-              <a href="#specimen" class="editorial-btn">Try It On Your Photo ↓</a>
-              <a href="#mechanics" class="editorial-link">See How It Works ↓</a>
-            </div>
-          </div>
-
-          <div class="hero-right-col">
-            <div class="curator-card">
-              <div class="curator-header">
-                <span class="curator-tag">EXECUTIVE SUMMARY</span>
-                <span class="curator-id">FIG. REF. 00-A</span>
-              </div>
-              <p class="curator-abstract">
-                Standard photography uploaded to open networks is harvested indiscriminately to train diffusion models, seed identity-cloning systems, and populate proprietary biometric dossiers. 
-              </p>
-              <div class="curator-specs">
-                <div class="spec-row">
-                  <span class="spec-k">PRIMARY MODEL DISRUPTED</span>
-                  <span class="spec-v">ArcFace / ResNet-50 / FaceNet</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-k">MEASURED PERTURBATION</span>
-                  <span class="spec-v">Δ Cosine Shift &gt; 0.45</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-k">PROVENANCE FRAMEWORK</span>
-                  <span class="spec-v">C2PA / LSB Steganography</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-k">ENFORCEMENT COGNIZANCE</span>
-                  <span class="spec-v">17 U.S.C. § 512(c)(3)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-rule-box">
-          <div class="rule-col">
-            <span class="rule-num">§ 01</span>
-            <p>Texture-Aware Gradient Perturbations residing strictly in high-frequency detail bands.</p>
-          </div>
-          <div class="rule-col">
-            <span class="rule-num">§ 02</span>
-            <p>Quad-Perceptual Hashes (pHash, dHash, aHash, wHash) forming an immutable identity seal.</p>
-          </div>
-          <div class="rule-col">
-            <span class="rule-num">§ 03</span>
-            <p>Automated upstream infrastructure resolution and statutory takedown notice generation.</p>
-          </div>
-        </div>
-
+  <section id="protect" class="editorial-section border-top">
+    <div class="editorial-container">
+      <div class="section-meta-header">
+        <span class="section-numeral">01 / PROTECT PHOTO</span>
+        <span class="section-folio">LOCAL IMAGE PROTECTION</span>
       </div>
-    </section>
 
-    <!-- SECTION 01: THESIS & EDITORIAL ESSAY -->
-    <section id="thesis" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">01 / THE THESIS</span>
-          <span class="section-folio">THE ERASURE OF THE CONSENT BOUNDARY</span>
-        </div>
-
-        <div class="essay-layout">
-          <div class="essay-title-area">
-            <h2 class="essay-heading">
-              Why the human likeness demands cryptographic armor.
-            </h2>
-            <aside class="essay-marginalia">
-              <span class="marginalia-title">CRITICAL PREMISE</span>
-              <p>When an image leaves the local camera roll, it ceases to exist merely as visual representation; it becomes unquantified training data for automated identity commodification.</p>
-            </aside>
-          </div>
-
-          <div class="essay-content-columns">
-            <div class="column-text">
-              <p class="lead-paragraph">
-                <span class="dropcap">S</span>crapers now index faces at billions per day, pulling embeddings that outlive the moment a photo was taken. Diffusion fine-tuners like LoRA and FaceSwap need as few as two clean portraits to clone a face.
-              </p>
-              <p>
-                The result is a one-way street: you can't opt out of being photographed, but every photo you post can quietly become training data.
-              </p>
-            </div>
-
-            <div class="column-text">
-              <p>
-                <strong>VeriSelf</strong> works at the pixel level, before an image ever leaves your device. It adds noise into the high-detail bands of a photo — hair, edges, texture — where recognition models rely most, while leaving skin tone and clarity untouched to the eye.
-              </p>
-              <blockquote class="editorial-quote">
-                “Privacy from machines isn't invisibility — it's illegibility to automated inference.”
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 02: THE SPECIMEN (BEFORE / AFTER COMPARISON) -->
-    <section id="specimen" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">02 / THE SPECIMEN</span>
-          <span class="section-folio">FIG. 01 — ADVERSARIAL PERTURBATION VISUAL PROOF</span>
-        </div>
-
-        <div class="specimen-intro">
-          <h2 class="editorial-subheading">
-            Try it on your own photo.
-          </h2>
-          <p class="specimen-caption">
-            Upload a portrait below to run it through the same pipeline shown in the sample plate. Everything runs locally in your browser — nothing you upload is sent anywhere. Drag the vertical divider on the plate to compare before / after.
-          </p>
-        </div>
-
-        <!-- Upload Dropzone -->
-        <div class="upload-dropzone" id="uploadDropzone">
-          <input type="file" id="uploadInput" accept="image/png, image/jpeg, image/webp" hidden>
-          <div class="upload-dropzone-inner">
-            <span class="upload-icon">＋</span>
-            <span class="upload-label">Drop a photo here, or click to choose one</span>
-            <span class="upload-sublabel">JPG, PNG or WebP · processed on-device</span>
-          </div>
-        </div>
-        <div class="upload-status-row" id="uploadStatusRow" style="display:none;">
-          <span class="upload-status-text font-mono" id="uploadStatusText">Processing…</span>
-          <button type="button" class="editorial-link upload-reset-btn" id="resetSpecimenBtn">↺ Reset to sample specimen</button>
-        </div>
-
-        <!-- The Editorial Comparison Plate -->
-        <div class="specimen-plate-container">
-          <div class="specimen-frame" id="comparisonSlider">
-            <div class="specimen-layer base-layer">
-              <img id="plateOriginalImg" src="./original.png" alt="Plate A: Unperturbed Original Identity Asset" class="plate-image">
-              <div class="plate-annotation left-tag">
-                <span class="plate-title">PLATE A [ORIGINAL]</span>
-                <span class="plate-status">UNPROTECTED • VULNERABLE TO SCRAPING</span>
-              </div>
-            </div>
-            
-            <div class="specimen-layer cloaked-layer" id="cloakedWrapper">
-              <img id="plateCloakedImg" src="./cloaked.png" alt="Plate B: Texture-Aware Adversarial Cloaking" class="plate-image">
-              <div class="plate-annotation right-tag">
-                <span class="plate-title">PLATE B [VERISELF CLOAKED]</span>
-                <span class="plate-status" id="plateBStatus">PERTURBED • SAMPLE SPECIMEN</span>
-              </div>
-            </div>
-
-            <div class="plate-divider-handle" id="sliderHandle">
-              <div class="divider-hairline"></div>
-              <div class="divider-dial">
-                <span class="dial-arrow">‹</span>
-                <span class="dial-arrow">›</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="plate-footer-meta">
-            <div class="plate-meta-item">
-              <span class="meta-label">SOURCE RESOLUTION</span>
-              <span class="meta-value font-mono" id="metaResolution">1920 × 1080 PX</span>
-            </div>
-            <div class="plate-meta-item">
-              <span class="meta-label">PERTURBATION BAND</span>
-              <span class="meta-value font-mono">HIGH-FREQUENCY GRADIENT NORM</span>
-            </div>
-            <div class="plate-meta-item">
-              <span class="meta-label" id="metaHashLabel">SAMPLE HASH DELTA</span>
-              <span class="meta-value font-mono" id="metaHashValue">4 BITS / 64 (93.75%)</span>
-            </div>
-            <div class="plate-meta-item">
-              <span class="meta-label">C2PA WATERMARK</span>
-              <span class="meta-value font-mono">AUTHENTIC ORIGIN EMBEDDED</span>
-            </div>
-          </div>
-
-          <div class="plate-download-row" id="plateDownloadRow" style="display:none;">
-            <button type="button" class="editorial-btn small-btn" id="downloadCloakedBtn">Download Cloaked Photo ↓</button>
-          </div>
-        </div>
-
-        <!-- Live Biometric Scan Panel -->
-        <div class="biometric-scan-panel" id="biometricScanPanel" style="display:none;">
-          <div class="chassis-header">
-            <span class="chassis-id">LIVE BIOMETRIC LANDMARK SCAN</span>
-            <span class="chassis-status font-mono" id="scanEngineStatus">MODEL IDLE</span>
-          </div>
-          <div class="biometric-scan-body">
-            <canvas id="scanCanvas" class="scan-canvas"></canvas>
-            <div class="chassis-readout scan-readout">
-              <div class="readout-row">
-                <span class="readout-k">FACE DETECTED</span>
-                <span class="readout-v font-mono" id="scanFaceDetected">—</span>
-              </div>
-              <div class="readout-row">
-                <span class="readout-k">DETECTION CONFIDENCE</span>
-                <span class="readout-v font-mono" id="scanConfidence">—</span>
-              </div>
-              <div class="readout-row">
-                <span class="readout-k">LANDMARK POINTS ISOLATED</span>
-                <span class="readout-v font-mono" id="scanLandmarkCount">—</span>
-              </div>
-              <div class="readout-row">
-                <span class="readout-k">BOUNDING BOX</span>
-                <span class="readout-v font-mono" id="scanBoundingBox">—</span>
-              </div>
-              <div class="chassis-footer font-mono">
-                RUNS ON-DEVICE VIA A BROWSER FACE-LANDMARK MODEL • IMAGE NEVER LEAVES YOUR BROWSER
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 03: MECHANICS & MATHEMATICAL APPARATUS -->
-    <section id="mechanics" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">03 / THE MECHANICS</span>
-          <span class="section-folio">MATHEMATICAL TRANSFORMATIONS & VISION LOGIC</span>
-        </div>
-
-        <div class="mechanics-hero-row">
-          <div class="mechanics-intro-col">
-            <h2 class="editorial-subheading">
-              Four Interlocking Defense Mechanisms
-            </h2>
-            <p>
-              VeriSelf avoids simplistic blur filters or clumsy masks. The architecture functions through four precise mathematical transformations applied in linear sequence:
-            </p>
-          </div>
-          <div class="mechanics-diagram-col">
-            <img src="./architecture.svg" alt="Complete Pipeline Architecture Diagram" class="editorial-diagram">
-          </div>
-        </div>
-
-        <!-- Asymmetric 4-Step Breakdown Table -->
-        <div class="editorial-apparatus-list">
-          <article class="apparatus-item">
-            <div class="apparatus-idx font-mono">[ PHASE I ]</div>
-            <div class="apparatus-title-col">
-              <h3>Anatomical Geometry & Landmark Isolation</h3>
-              <span class="apparatus-formula font-mono">L = { (x_e1, y_e1), (x_e2, y_e2), (x_n, y_n), (x_m1, y_m1), (x_m2, y_m2) }</span>
-            </div>
-            <div class="apparatus-body-col">
-              <p>Maps 5 reference points on the face — both eyes, nose, and mouth corners — the same landmarks facial recognition models rely on to isolate a match.</p>
-            </div>
-          </article>
-
-          <article class="apparatus-item">
-            <div class="apparatus-idx font-mono">[ PHASE II ]</div>
-            <div class="apparatus-title-col">
-              <h3>Adaptive Gradient-Weighted Adversarial Noise</h3>
-              <span class="apparatus-formula font-mono">∇I = √( (∂I/∂x)² + (∂I/∂y)² )  •  η ~ N(0, σ²)</span>
-            </div>
-            <div class="apparatus-body-col">
-              <p>Noise is scaled to how much detail is already in each area. Smooth skin gets almost none; hair, pores, and edges absorb the perturbation. That's why the change is invisible to you but disruptive to a model.</p>
-            </div>
-          </article>
-
-          <article class="apparatus-item">
-            <div class="apparatus-idx font-mono">[ PHASE III ]</div>
-            <div class="apparatus-title-col">
-              <h3>Spatial Laplacian Convolution & Deepfake Gauging</h3>
-              <span class="apparatus-formula font-mono">K_lap = [[0, 1, 0], [1, -4, 1], [0, 1, 0]]  •  Var(I * K_lap)</span>
-            </div>
-            <div class="apparatus-body-col">
-              <p>Deepfakes and AI-blended images tend to lose fine edge detail. VeriSelf measures edge sharpness across the image to flag likely synthetic or manipulated media.</p>
-            </div>
-          </article>
-
-          <article class="apparatus-item">
-            <div class="apparatus-idx font-mono">[ PHASE IV ]</div>
-            <div class="apparatus-title-col">
-              <h3>Quad-Perceptual Hashing & Hypersphere Embedding</h3>
-              <span class="apparatus-formula font-mono">H = { pHash, dHash, aHash, wHash }  •  v ∈ R⁵¹², ||v||₂ = 1</span>
-            </div>
-            <div class="apparatus-body-col">
-              <p>Four hash algorithms fingerprint the image from different angles — brightness, gradients, and frequency. Together they let VeriSelf spot a re-upload even after cropping or compression.</p>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 04: THE HASH VAULT & INTERACTIVE CALCULATOR -->
-    <section id="calculator" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">04 / THE VAULT & MATCHER</span>
-          <span class="section-folio">CLIENT-SIDE FORENSIC COMPARISON INSTRUMENT</span>
-        </div>
-
-        <div class="calculator-layout">
-          <div class="calculator-text-col">
-            <h2 class="editorial-subheading">
-              Perceptual Hash Comparison Instrument
-            </h2>
-            <p>
-              Unlike cryptographic digests (such as SHA-256) where a single bit alteration scrambles the entire output, <strong>perceptual hashes</strong> exhibit distance proportional to visual difference. 
-            </p>
-            <p>
-              Test the client-side Hamming distance engine below. You may alter hex digits in either string to observe how bit displacement modifies forensic classification in real time.
-            </p>
-
-            <div class="reference-box">
-              <span class="ref-title">METRIC INTERPRETATION GUIDE</span>
-              <table class="editorial-ref-table">
-                <tr>
-                  <td class="font-mono">0 – 4 Bits</td>
-                  <td>Identity Likeness / Lossless Compression</td>
-                </tr>
-                <tr>
-                  <td class="font-mono">5 – 8 Bits</td>
-                  <td>Confirmed Match (Cropped / Compressed)</td>
-                </tr>
-                <tr>
-                  <td class="font-mono">9 – 12 Bits</td>
-                  <td>Borderline Similarity / Probable Derivative</td>
-                </tr>
-                <tr>
-                  <td class="font-mono">&gt; 12 Bits</td>
-                  <td>Distinct & Unrelated Image Asset</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-
-          <div class="calculator-instrument-col">
-            <div class="instrument-chassis">
-              <div class="chassis-header">
-                <span class="chassis-id">FORENSIC COMPARATOR ENGINE</span>
-                <span class="chassis-status font-mono">64-BIT HAMMING MATRIX</span>
-              </div>
-
-              <div class="chassis-inputs">
-                <div class="field-wrap">
-                  <label for="hashInput1" class="field-label">PRIMARY PERCEPTUAL HASH [HEX 64-BIT]</label>
-                  <div class="field-control">
-                    <input type="text" id="hashInput1" class="chassis-input font-mono" value="e38a29b4c0f1d5e6" maxlength="16" spellcheck="false">
-                    <button type="button" class="field-action-btn" onclick="document.getElementById('hashInput1').value='e38a29b4c0f1d5e6'; calculateHamming();">RESET</button>
-                  </div>
-                </div>
-
-                <div class="field-wrap">
-                  <label for="hashInput2" class="field-label">TARGET INFRINGEMENT HASH TO EVALUATE</label>
-                  <div class="field-control">
-                    <input type="text" id="hashInput2" class="chassis-input font-mono" value="e38a29b4c0f1d5a1" maxlength="16" spellcheck="false">
-                    <button type="button" class="field-action-btn" onclick="document.getElementById('hashInput2').value='e38a29b4c0f1d5a1'; calculateHamming();">PRESET</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Output Readout -->
-              <div class="chassis-readout" id="calcResultsBox">
-                <div class="readout-row">
-                  <span class="readout-k">BITWISE HAMMING DISTANCE</span>
-                  <span class="readout-v font-mono" id="resDistance">4 BITS / 64</span>
-                </div>
-                <div class="readout-row">
-                  <span class="readout-k">PERCEPTUAL SIMILARITY COEFFICIENT</span>
-                  <span class="readout-v font-mono text-bold" id="resSimilarity">93.75%</span>
-                </div>
-                <div class="readout-row verdict-row">
-                  <span class="readout-k">CLASSIFICATION VERDICT</span>
-                  <span class="verdict-tag font-mono" id="resVerdict">CONFIRMED MATCH (≤ 8 BITS)</span>
-                </div>
-              </div>
-
-              <div class="chassis-footer font-mono">
-                COMPUTATION RUNS STRICTLY LOCAL IN JAVASCRIPT • ZERO NETWORK TRANSMISSION
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 05: THE STATUTORY LEGAL INSTRUMENT -->
-    <section id="statute" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">05 / THE LEGAL SUITE</span>
-          <span class="section-folio">TITLE 17, UNITED STATES CODE, SECTION 512(c)</span>
-        </div>
-
-        <div class="statute-layout">
-          <div class="statute-prose-col">
-            <h2 class="editorial-subheading">
-              Automated Statutory DMCA & StopNCII Synthesis
-            </h2>
-            <p>
-              Cloaking protects against future scraping. This suite handles what's already out there: when a match turns up in the interception feed, VeriSelf looks up who's hosting it and drafts a takedown notice under 17 U.S.C. § 512(c)(3), ready to send.
-            </p>
-
-            <ul class="statute-feature-list">
-              <li><strong>Autonomous Registry Lookup:</strong> Resolves registrar abuse mailboxes, hosting IP blocks, and transit routing networks (e.g. Cloudflare, Amazon AWS).</li>
-              <li><strong>SHA-256 Evidentiary Tokens:</strong> Cryptographically binds the infringing URL to an immutable digital signature.</li>
-              <li><strong>Google Legal De-Indexing Payloads:</strong> Prepares standardized parameters for expedited personal image de-indexation under DMCA and personal abuse policies.</li>
-              <li><strong>StopNCII Global Replication:</strong> Outputs dual PDQ / pHash manifest entries ready for hash-bank synchronization.</li>
-            </ul>
-          </div>
-
-          <div class="statute-document-col">
-            <div class="legal-document-wrapper">
-              <div class="doc-header-seal">
-                <span class="seal-text font-mono">OFFICIAL STATUTORY NOTICE OF INFRINGEMENT</span>
-                <span class="seal-stamp font-mono">VS-FORM-512C-V2.4</span>
-              </div>
-              <pre class="legal-text font-mono"><code>FORMAL NOTICE OF STATUTORY COPYRIGHT & IDENTITY INFRINGEMENT
-Pursuant to Title 17, United States Code, Section 512(c)(3)
-(Online Copyright Infringement Liability Limitation Act)
-
-TO: Designated DMCA Agent / Infrastructure Abuse Department
-ORGANIZATION: [HOSTING INFRASTRUCTURE ASN RESOLVED]
-
-1. IDENTIFICATION OF INFRINGED BIOMETRIC IDENTITY ASSET:
-The work at issue is the visual likeness and proprietary 
-biometric image asset belonging to Identity Owner (via VeriSelf).
-Original Cryptographic Hash:
-SHA-256: 5715279bce5ee065ef8457318ed7d9e2b2e6ed0a3dcfd03405309aa9120b82c6
-
-2. LOCATION OF UNAUTHORIZED INFRINGING MATERIAL:
-The media listed below is residing on your servers without authorization:
-Infringing URL: https://[TARGET_DOMAIN]/cdn/unauthorized_clone.jpg
-
-3. STATUTORY GOOD FAITH STATEMENTS:
-a) I have a good faith belief that the use of the material complained 
-   of is not authorized by the copyright owner, its agent, or the law.
-b) The information in this notification is accurate.
-c) Under penalty of perjury, I am authorized to act on behalf of 
-   the owner of the exclusive right that is being infringed.
-
-4. REMEDY SOUGHT:
-Pursuant to 17 U.S.C. § 512(c)(1)(C), demand is hereby made that you 
-expeditiously remove or disable public access to the infringing material.
-
-DIGITAL SIGNATURE:
-VeriSelf Autonomous Legal Enforcement Suite v2.4
-Electronic Signature Token: VS-DE4D81E5-25964FEF</code></pre>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 06: COLOPHON, TECH STACK & QUICKSTART -->
-    <section id="colophon" class="editorial-section border-top">
-      <div class="editorial-container">
-        <div class="section-meta-header">
-          <span class="section-numeral">06 / COLOPHON & DEPLOYMENT</span>
-          <span class="section-folio">ENGINEERING SPECIFICATION & HOW TO RUN</span>
-        </div>
-
-        <div class="colophon-grid">
-          <!-- Column 1: Tech Stack Table -->
-          <div class="colophon-item">
-            <h3 class="colophon-title">The Engineering Stack</h3>
-            <table class="colophon-table">
-              <tr>
-                <td class="font-mono">Python 3.11</td>
-                <td>Forensic computation engine & matrix math</td>
-              </tr>
-              <tr>
-                <td class="font-mono">FastAPI / Uvicorn</td>
-                <td>Asynchronous REST API on port 8000</td>
-              </tr>
-              <tr>
-                <td class="font-mono">Next.js 16</td>
-                <td>React 19 Turbopack web UI on port 3000</td>
-              </tr>
-              <tr>
-                <td class="font-mono">NumPy & SciPy</td>
-                <td>Spatial 2D gradient & Laplacian convolution</td>
-              </tr>
-              <tr>
-                <td class="font-mono">Pillow & ImageHash</td>
-                <td>Pixel buffer manipulation & DCT perceptual hashes</td>
-              </tr>
-              <tr>
-                <td class="font-mono">C2PA Standard</td>
-                <td>Cryptographic provenance & steganography manifest</td>
-              </tr>
-            </table>
-          </div>
-
-          <!-- Column 2: Local Deployment Instructions -->
-          <div class="colophon-item">
-            <h3 class="colophon-title">Execution Procedures</h3>
-
-            <div class="exec-block">
-              <span class="exec-label">METHOD I: 1-CLICK LAUNCHER (WINDOWS)</span>
-              <p class="exec-desc">Double-click the batch orchestrator in the repository root:</p>
-              <div class="code-box">
-                <code class="font-mono">start-veriself.bat</code>
-                <button class="copy-btn" onclick="copyCode('start-veriself.bat')">COPY</button>
-              </div>
-            </div>
-
-            <div class="exec-block">
-              <span class="exec-label">METHOD II: MANUAL TWO-TIER LAUNCH</span>
-              <p class="exec-desc">Terminal 1 — Python Forensic Engine:</p>
-              <div class="code-box">
-                <code class="font-mono">cd apps/backend && python -m uvicorn main:app --port 8000</code>
-                <button class="copy-btn" onclick="copyCode('cd apps/backend && python -m uvicorn main:app --port 8000')">COPY</button>
-              </div>
-              <p class="exec-desc">Terminal 2 — Next.js Application Interface:</p>
-              <div class="code-box">
-                <code class="font-mono">cd apps/web && npm run start -- -p 3000</code>
-                <button class="copy-btn" onclick="copyCode('cd apps/web && npm run start -- -p 3000')">COPY</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Honest Status Declaration -->
-        <div class="status-declaration-card">
-          <span class="decl-label font-mono">EDITORIAL DISCLOSURE & SYSTEM BOUNDARIES</span>
-          <p class="decl-text">
-            VeriSelf is an engineered prototype demonstrating proof of concept. The "Try it on your own photo" demo above runs a real, on-device gradient-weighted noise filter and a real browser face-landmark model — the hash values, resolution, and landmark readout are computed live from whatever you upload, not fabricated. It illustrates the noise-injection concept the full pipeline uses; it does not claim to defeat a production ArcFace/FaceNet deployment on its own — that requires the trained adversarial optimization implemented in the backend engine. The crawler module operates on simulated host seeds to illustrate real-time statutory DMCA compiling. Perceptual hashing, landmark isolation, and image export are authentic and operational.
-          </p>
-        </div>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- Editorial Footer -->
-  <footer class="editorial-footer border-top">
-    <div class="editorial-container footer-content">
-      <div class="footer-left">
-        <span class="footer-brand font-serif">VERISELF</span>
-        <p class="footer-meta-p">
-          Crafted with obsessive typographical restraint. Set in Times New Roman, Newsreader & Space Mono. 
-          Released under the MIT Open Source License.
+      <div class="specimen-intro">
+        <h2 class="editorial-subheading">Protect your photo</h2>
+        <p class="specimen-caption">
+          Choose a JPG, PNG, or WebP image. The demo processes the working copy in your browser and creates a protected comparison image.
         </p>
       </div>
 
-      <div class="footer-right">
-        <div class="footer-nav-col">
-          <span class="footer-nav-heading">NAVIGATION</span>
-          <a href="#thesis">01 / Thesis</a>
-          <a href="#specimen">02 / Specimen</a>
-          <a href="#mechanics">03 / Mechanics</a>
-          <a href="#calculator">04 / Hash Vault</a>
-          <a href="#statute">05 / Legal Instrument</a>
-          <a href="#colophon">06 / Colophon</a>
+      <div class="upload-dropzone" id="uploadDropzone">
+        <input type="file" id="uploadInput" accept="image/png, image/jpeg, image/webp" hidden>
+        <div class="upload-dropzone-inner">
+          <span class="upload-icon">＋</span>
+          <span class="upload-label">Drop a photo here, or click to choose one</span>
+          <span class="upload-sublabel">JPG, PNG or WebP · processed on-device</span>
         </div>
-        <div class="footer-nav-col">
-          <span class="footer-nav-heading">SOURCE</span>
-          <!-- Replace GITHUB_REPOSITORY_URL_HERE with your repository URL -->
-          <a href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
-          <a href="./architecture.svg" target="_blank">Architecture Diagram ↗</a>
-          <a href="#quickstart">Quickstart Script</a>
+      </div>
+
+      <div class="upload-status-row" id="uploadStatusRow" style="display:none;">
+        <span class="upload-status-text font-mono" id="uploadStatusText">Processing…</span>
+        <button type="button" class="editorial-link upload-reset-btn" id="resetSpecimenBtn">↺ Reset</button>
+      </div>
+
+      <div class="specimen-plate-container">
+        <div class="specimen-frame" id="comparisonSlider">
+          <div class="specimen-layer base-layer">
+            <img id="plateOriginalImg" src="./original.png" alt="Original photo" class="plate-image">
+            <div class="plate-annotation left-tag">
+              <span class="plate-title">ORIGINAL</span>
+              <span class="plate-status">SOURCE IMAGE</span>
+            </div>
+          </div>
+
+          <div class="specimen-layer cloaked-layer" id="cloakedWrapper">
+            <img id="plateCloakedImg" src="./cloaked.png" alt="Protected photo" class="plate-image">
+            <div class="plate-annotation right-tag">
+              <span class="plate-title">VERISELF PROTECTED</span>
+              <span class="plate-status" id="plateBStatus">SAMPLE SPECIMEN</span>
+            </div>
+          </div>
+
+          <div class="plate-divider-handle" id="sliderHandle">
+            <div class="divider-hairline"></div>
+            <div class="divider-dial"><span class="dial-arrow">‹</span><span class="dial-arrow">›</span></div>
+          </div>
+        </div>
+
+        <div class="plate-footer-meta">
+          <div class="plate-meta-item">
+            <span class="meta-label">SOURCE RESOLUTION</span>
+            <span class="meta-value font-mono" id="metaResolution">1920 × 1080 PX</span>
+          </div>
+          <div class="plate-meta-item">
+            <span class="meta-label">PROCESSING</span>
+            <span class="meta-value font-mono">LOCAL BROWSER</span>
+          </div>
+          <div class="plate-meta-item">
+            <span class="meta-label" id="metaHashLabel">SAMPLE HASH DELTA</span>
+            <span class="meta-value font-mono" id="metaHashValue">4 BITS / 64 (93.75%)</span>
+          </div>
+          <div class="plate-meta-item">
+            <span class="meta-label">NEXT STEP</span>
+            <span class="meta-value font-mono">BIOMETRIC SCAN ↓</span>
+          </div>
+        </div>
+
+        <div class="plate-download-row" id="plateDownloadRow" style="display:none;">
+          <button type="button" class="editorial-btn small-btn" id="downloadCloakedBtn">Download Protected Photo ↓</button>
         </div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
-  <script src="./script.js"></script>
+  <section id="biometric" class="editorial-section border-top">
+    <div class="editorial-container">
+      <div class="section-meta-header">
+        <span class="section-numeral">02 / BIOMETRIC SCAN</span>
+        <span class="section-folio">FACE DETECTION & LANDMARK ANALYSIS</span>
+      </div>
+
+      <div class="specimen-intro">
+        <h2 class="editorial-subheading">Biometric option</h2>
+        <p class="specimen-caption">
+          Run a browser-based face scan on the uploaded photo. VeriSelf detects the face, measures detection confidence, draws the face box, and marks facial landmark references.
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="editorial-btn" id="runBiometricBtn">Run Biometric Scan</button>
+          <span class="editorial-link">Upload a photo first</span>
+        </div>
+      </div>
+
+      <div class="biometric-scan-panel" id="biometricScanPanel" style="display:none;">
+        <div class="chassis-header">
+          <span class="chassis-id">LIVE BIOMETRIC LANDMARK SCAN</span>
+          <span class="chassis-status font-mono" id="scanEngineStatus">MODEL IDLE</span>
+        </div>
+        <div class="biometric-scan-body">
+          <canvas id="scanCanvas" class="scan-canvas"></canvas>
+          <div class="chassis-readout scan-readout">
+            <div class="readout-row">
+              <span class="readout-k">FACE DETECTED</span>
+              <span class="readout-v font-mono" id="scanFaceDetected">—</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-k">DETECTION CONFIDENCE</span>
+              <span class="readout-v font-mono" id="scanConfidence">—</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-k">LANDMARK POINTS</span>
+              <span class="readout-v font-mono" id="scanLandmarkCount">—</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-k">BOUNDING BOX</span>
+              <span class="readout-v font-mono" id="scanBoundingBox">—</span>
+            </div>
+            <div class="chassis-footer font-mono">
+              BROWSER FACE-LANDMARK MODEL • IMAGE PROCESSING STAYS IN THE BROWSER
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="verify" class="editorial-section border-top">
+    <div class="editorial-container">
+      <div class="section-meta-header">
+        <span class="section-numeral">03 / VERIFY MATCH</span>
+        <span class="section-folio">PERCEPTUAL HASH COMPARISON</span>
+      </div>
+
+      <div class="calculator-layout">
+        <div class="calculator-text-col">
+          <h2 class="editorial-subheading">Verify an image match</h2>
+          <p>
+            Compare two 64-bit perceptual hashes. The tool calculates their Hamming distance and a simple similarity percentage.
+          </p>
+          <div class="reference-box">
+            <span class="ref-title">QUICK READING</span>
+            <table class="editorial-ref-table">
+              <tr><td class="font-mono">0–8 bits</td><td>Close perceptual match</td></tr>
+              <tr><td class="font-mono">&gt; 8 bits</td><td>More visually distinct</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="calculator-instrument-col">
+          <div class="instrument-chassis">
+            <div class="chassis-header">
+              <span class="chassis-id">HASH VERIFICATION</span>
+              <span class="chassis-status font-mono">64-BIT</span>
+            </div>
+
+            <div class="chassis-inputs">
+              <div class="field-wrap">
+                <label for="hashInput1" class="field-label">HASH A</label>
+                <div class="field-control">
+                  <input type="text" id="hashInput1" class="chassis-input font-mono" value="e38a29b4c0f1d5e6" maxlength="16" spellcheck="false">
+                  <button type="button" class="field-action-btn" onclick="document.getElementById('hashInput1').value='e38a29b4c0f1d5e6'; calculateHamming();">RESET</button>
+                </div>
+              </div>
+
+              <div class="field-wrap">
+                <label for="hashInput2" class="field-label">HASH B</label>
+                <div class="field-control">
+                  <input type="text" id="hashInput2" class="chassis-input font-mono" value="e38a29b4c0f1d5a1" maxlength="16" spellcheck="false">
+                  <button type="button" class="field-action-btn" onclick="document.getElementById('hashInput2').value='e38a29b4c0f1d5a1'; calculateHamming();">PRESET</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="chassis-readout" id="calcResultsBox">
+              <div class="readout-row">
+                <span class="readout-k">HAMMING DISTANCE</span>
+                <span class="readout-v font-mono" id="resDistance">4 BITS / 64</span>
+              </div>
+              <div class="readout-row">
+                <span class="readout-k">SIMILARITY</span>
+                <span class="readout-v font-mono text-bold" id="resSimilarity">93.75%</span>
+              </div>
+              <div class="readout-row verdict-row">
+                <span class="readout-k">RESULT</span>
+                <span class="verdict-tag font-mono" id="resVerdict">CONFIRMED MATCH (≤ 8 BITS)</span>
+              </div>
+            </div>
+
+            <div class="chassis-footer font-mono">COMPUTED LOCALLY IN JAVASCRIPT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="editorial-footer border-top">
+  <div class="editorial-container footer-content">
+    <div class="footer-left">
+      <span class="footer-brand font-serif">VERISELF</span>
+      <p class="footer-meta-p">Digital identity protection, biometric landmark analysis, and media verification.</p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-nav-col">
+        <span class="footer-nav-heading">TOOLS</span>
+        <a href="#protect">01 / Protect</a>
+        <a href="#biometric">02 / Biometric</a>
+        <a href="#verify">03 / Verify</a>
+      </div>
+      <div class="footer-nav-col">
+        <span class="footer-nav-heading">SOURCE</span>
+        <a href="https://github.com/keke2204/VERISELF" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
