@@ -27,4 +27,6 @@ jobs:
         run: python -c "from app.main import app; print(app.title, app.version)"
       - name: Run API tests
         working-directory: apps/backend
+        env:
+          PYTHONPATH: .
         run: pytest -q
