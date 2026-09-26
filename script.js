@@ -196,6 +196,19 @@ function initUploadDemo() {
     link.click();
     document.body.removeChild(link);
   });
+
+  const biometricBtn = document.getElementById('runBiometricBtn');
+  if (biometricBtn) {
+    biometricBtn.addEventListener('click', () => {
+      if (!workCanvas) {
+        setUploadStatus('Upload a photo first, then run the biometric scan.');
+        document.getElementById('protect')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      document.getElementById('biometric')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      runBiometricScan();
+    });
+  }
 }
 
 function setUploadStatus(text) {
@@ -271,7 +284,7 @@ function processUploadedImage(img) {
   const downloadRow = document.getElementById('plateDownloadRow');
   if (downloadRow) downloadRow.style.display = 'flex';
 
-  setUploadStatus('Done — drag the plate divider to compare, or scroll down for the biometric scan.');
+  setUploadStatus('Done — compare the photo above, then open Biometric Scan.');
 
   // 7. Run the live biometric landmark scan
   runBiometricScan();
@@ -290,8 +303,8 @@ function resetSpecimenToDefault() {
   const hashInput1 = document.getElementById('hashInput1');
   const hashInput2 = document.getElementById('hashInput2');
 
-  if (plateOriginal) plateOriginal.src = './assets/original.png';
-  if (plateCloaked) plateCloaked.src = './assets/cloaked.png';
+  if (plateOriginal) plateOriginal.src = './original.png';
+  if (plateCloaked) plateCloaked.src = './cloaked.png';
   if (plateBStatus) plateBStatus.textContent = 'PERTURBED • SAMPLE SPECIMEN';
   if (metaResolution) metaResolution.textContent = '1920 × 1080 PX';
   if (metaHashLabel) metaHashLabel.textContent = 'SAMPLE HASH DELTA';
