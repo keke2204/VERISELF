@@ -18,6 +18,17 @@
   --max-w: 1240px;
 }
 
+html.dark {
+  --bg: #070708;
+  --bg-surface: #0e0f11;
+  --bg-subtle: #141518;
+  --border: #222326;
+  --border-strong: #38393d;
+  --text-main: #f0f0f2;
+  --text-body: #b0b1b6;
+  --text-muted: #6e7076;
+}
+
 html.light {
   --bg: #fafaf9;
   --bg-surface: #f3f3f2;
@@ -46,6 +57,8 @@ html {
 }
 
 body {
+  background-color: var(--bg);
+  color: var(--text-main);
   font-family: var(--font-serif);
   line-height: 1.7;
   overflow-x: hidden;
