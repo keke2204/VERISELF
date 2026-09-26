@@ -25,3 +25,6 @@ jobs:
       - name: Import application
         working-directory: apps/backend
         run: python -c "from app.main import app; print(app.title, app.version)"
+      - name: Run API tests
+        working-directory: apps/backend
+        run: pytest -q
