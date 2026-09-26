@@ -30,6 +30,17 @@ jobs:
           rm -f VeriSelf-UPDATED.zip
           cd package
           zip -qr ../VeriSelf-UPDATED.zip veriself
+      - name: Sync ZIP into repository
+        shell: bash
+        run: |
+          set -e
+          cp VeriSelf-UPDATED.zip veriself-full-project-updated.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add veriself-full-project-updated.zip
+          git diff --cached --quiet && exit 0
+          git commit -m "Sync updated VeriSelf project ZIP"
+          git push
       - name: Upload updated ZIP
         uses: actions/upload-artifact@v4
         with:
