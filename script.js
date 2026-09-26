@@ -138,7 +138,7 @@ function calculateHamming() {
   resSim.textContent = `${similarity}%`;
 
   if (isMatch) {
-    resVerdict.textContent = `CONFIRMED MATCH (≤ 8 BITS)`;
+    resVerdict.textContent = `CLOSE PERCEPTUAL MATCH (≤ 8 BITS)`;
     resVerdict.className = 'verdict-tag font-mono status-match';
   } else {
     resVerdict.textContent = `DISTINCT ASSET (> 8 BITS)`;
@@ -147,7 +147,7 @@ function calculateHamming() {
 }
 
 /* 5. Upload Demo — Real client-side cloak effect, hashing & biometric scan */
-const FACE_MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights';
+const FACE_MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@0.22.2/weights';
 const UPLOAD_MAX_DIM = 720;
 let faceApiModelsPromise = null;
 let workCanvas = null;   // capped-resolution copy of the uploaded image
@@ -222,6 +222,11 @@ function setUploadStatus(text) {
 function handleUploadedFile(file) {
   if (!file.type.startsWith('image/')) {
     setUploadStatus('That file doesn\'t look like an image — try a JPG, PNG, or WebP.');
+    return;
+  }
+
+  if (file.size === 0) {
+    setUploadStatus('That image file is empty. Please choose another image.');
     return;
   }
 
@@ -527,7 +532,7 @@ function advPHash(canvas){const N=32,S=8,g=advGray(advInitHashCanvas(canvas,N)),
 function advHamming(a,b){let n=0;for(let i=0;i<16;i++){let x=(parseInt(a[i]||'0',16)^parseInt(b[i]||'0',16));while(x){n+=x&1;x>>=1}}return n}
 function advForensicScan(canvas){const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,d=ctx.getImageData(0,0,w,h).data,step=Math.max(1,Math.floor(Math.min(w,h)/450));let s=0,s2=0,drift=0,n=0;for(let y=1;y<h-1;y+=step)for(let x=1;x<w-1;x+=step){const i=(y*w+x)*4,u=((y-1)*w+x)*4,dn=((y+1)*w+x)*4,l=(y*w+x-1)*4,r=(y*w+x+1)*4,c=.299*d[i]+.587*d[i+1]+.114*d[i+2],up=.299*d[u]+.587*d[u+1]+.114*d[u+2],down=.299*d[dn]+.587*d[dn+1]+.114*d[dn+2],left=.299*d[l]+.587*d[l+1]+.114*d[l+2],right=.299*d[r]+.587*d[r+1]+.114*d[r+2],lap=up+down+left+right-4*c;s+=lap;s2+=lap*lap;drift+=Math.abs(d[i]-d[i+1])+Math.abs(d[i+1]-d[i+2]);n++}const variance=Math.max(0,s2/n-(s/n)*(s/n)),channel=drift/n,texture=Math.min(100,variance/8),risk=Math.max(1,Math.min(99,Math.round(55-texture*.35+channel*.18))),level=risk<30?'LOW':risk<65?'MODERATE':'HIGH';return{risk,level,variance,channel,texture}}
 function advInitCandidate(){const dz=adv('candidateDropzone'),input=adv('candidateInput');if(!dz)return;dz.onclick=()=>input.click();input.onchange=e=>e.target.files[0]&&advReadCandidate(e.target.files[0]);dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('is-dragover')});dz.addEventListener('dragleave',()=>dz.classList.remove('is-dragover'));dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('is-dragover');const f=e.dataTransfer.files[0];if(f)advReadCandidate(f)})}
-function advReadCandidate(file){if(!workCanvas)return alert('Upload the source image first.');const r=new FileReader();r.onload=e=>{const img=new Image();img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(1,720/Math.max(img.naturalWidth,img.naturalHeight));c.width=Math.round(img.naturalWidth*scale);c.height=Math.round(img.naturalHeight*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);advancedCandidateHash=advPHash(c);const source=advPHash(workCanvas),dist=advHamming(source,advancedCandidateHash),sim=((64-dist)/64*100).toFixed(2),match=dist<=8;adv('advSourceHash').textContent=source;adv('advCandidateHash').textContent=advancedCandidateHash;adv('advDistance').textContent=dist+' BITS / 64';adv('advSimilarity').textContent=sim+'%';adv('advVerdict').textContent=match?'CLOSE PERCEPTUAL MATCH':'DISTINCT IMAGE';adv('advVerdict').className='verdict-tag font-mono '+(match?'status-match':'status-distinct');adv('candidateResult').style.display='block'};img.src=e.target.result};r.readAsDataURL(file)}
+function advReadCandidate(file){if(!workCanvas)return alert('Upload the source image first.');if(!file.type.startsWith('image/'))return alert('Choose a JPG, PNG, or WebP image.');if(!file.size)return alert('The candidate image is empty.');const r=new FileReader();r.onerror=()=>alert('Could not read the candidate image.');r.onload=e=>{const img=new Image();img.onerror=()=>alert('Could not decode the candidate image.');img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(1,720/Math.max(img.naturalWidth,img.naturalHeight));c.width=Math.max(1,Math.round(img.naturalWidth*scale));c.height=Math.max(1,Math.round(img.naturalHeight*scale));c.getContext('2d').drawImage(img,0,0,c.width,c.height);advancedCandidateHash=advPHash(c);const source=advPHash(workCanvas),dist=advHamming(source,advancedCandidateHash),sim=((64-dist)/64*100).toFixed(2),match=dist<=8;adv('advSourceHash').textContent=source;adv('advCandidateHash').textContent=advancedCandidateHash;adv('advDistance').textContent=dist+' BITS / 64';adv('advSimilarity').textContent=sim+'%';adv('advVerdict').textContent=match?'CLOSE PERCEPTUAL MATCH':'DISTINCT IMAGE';adv('advVerdict').className='verdict-tag font-mono '+(match?'status-match':'status-distinct');adv('candidateResult').style.display='block'}};img.src=e.target.result};r.readAsDataURL(file)}
 async function advGenerateEvidence(){if(!sourceFile||!workCanvas)return alert('Upload a source image first.');const buf=await sourceFile.arrayBuffer(),digest=await crypto.subtle.digest('SHA-256',buf),sha=[...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join(''),phash=advPHash(workCanvas);advancedCase={case_id:'VS-'+Math.random().toString(36).slice(2,10).toUpperCase(),created_at:new Date().toISOString(),file:{name:sourceFile.name,type:sourceFile.type,size_bytes:sourceFile.size},sha256:sha,phash:phash,forensic:advancedForensic,candidate_match:advancedCandidateHash?{candidate_phash:advancedCandidateHash,hamming_distance:advHamming(phash,advancedCandidateHash)}:null};adv('advEvidenceFile').textContent=sourceFile.name;adv('advSha').textContent=sha;adv('advEvidencePhash').textContent=phash;adv('advDownloadBtn').style.display='inline-block'}
 function advDownloadEvidence(){if(!advancedCase)return;const blob=new Blob([JSON.stringify(advancedCase,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='veriself-case-evidence.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
 function advNotice(){const url=adv('advTargetUrl').value.trim(),owner=adv('advOwner').value.trim()||'Identity Owner';if(!url){adv('advNotice').value='Enter the suspected URL first.';return}const sha=adv('advSha').textContent||'not generated',ph=adv('advEvidencePhash').textContent||'not generated';adv('advNotice').value='VERISELF — RESPONSE DRAFT\n\nDate: '+new Date().toLocaleDateString()+'\nOwner: '+owner+'\nSuspected URL: '+url+'\n\nEvidence SHA-256: '+sha+'\npHash: '+ph+'\n\nREQUEST\nPlease review the referenced media and, where appropriate, remove or disable access to material being used without authorization. Please preserve the URL and evidence for review.\n\nThis is a user-reviewed draft generated by the VeriSelf prototype. It is not an automatic legal filing and does not establish infringement by itself.'}
