@@ -162,8 +162,17 @@ function initUploadDemo() {
 
   if (!dropzone || !fileInput) return;
 
+  const openPicker = (e) => {
+    if (e) e.preventDefault();
+    fileInput.click();
+  };
+  dropzone.addEventListener('click', openPicker);
+  dropzone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') openPicker(e);
+  });
   fileInput.addEventListener('change', (e) => {
-    if (e.target.files && e.target.files[0]) handleUploadedFile(e.target.files[0]);
+    const file = e.target.files && e.target.files[0];
+    if (file) handleUploadedFile(file);
   });
 
   ['dragenter', 'dragover'].forEach(evt => {
@@ -221,7 +230,9 @@ function setUploadStatus(text) {
 }
 
 function handleUploadedFile(file) {
-  if (!file.type.startsWith('image/')) {
+  const name = (file.name || '').toLowerCase();
+  const isImage = file.type.startsWith('image/') || /\.(png|jpe?g|webp)$/i.test(name);
+  if (!isImage) {
     setUploadStatus('That file doesn\'t look like an image — try a JPG, PNG, or WebP.');
     return;
   }
