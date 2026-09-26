@@ -37,7 +37,7 @@
     <nav class="editorial-nav">
       <a href="#protect"><span class="nav-idx">01</span> Protect</a>
       <a href="#biometric"><span class="nav-idx">02</span> Biometric</a>
-      <a href="#verify"><span class="nav-idx">03</span> Verify</a>
+      <a href="#verify"><span class="nav-idx">03</span> Verify</a><a href="#advanced"><span class="nav-idx">04</span> Evidence</a>
       <a href="https://github.com/keke2204/VERISELF" target="_blank" rel="noopener noreferrer" class="nav-github">Repository ↗</a>
     </nav>
   </div>
@@ -301,6 +301,56 @@
       </div>
     </div>
   </section>
+
+  <section id="advanced" class="editorial-section border-top">
+    <div class="editorial-container">
+      <div class="section-meta-header"><span class="section-numeral">04 / FORENSICS + EVIDENCE</span><span class="section-folio">PROJECT FEATURES</span></div>
+      <div class="analysis-grid">
+        <div class="instrument-chassis">
+          <div class="chassis-header"><span>FORENSIC IMAGE CHECK</span><span class="font-mono" id="advRiskLevel">READY</span></div>
+          <p class="specimen-caption">Measure edge variance, colour-channel drift, and texture signal from the uploaded image. These are forensic indicators, not a definitive deepfake verdict.</p>
+          <div class="risk-meter"><div id="advRiskBar" class="risk-bar"></div></div>
+          <div class="risk-score" id="advRiskScore">—</div>
+          <div class="chassis-readout">
+            <div class="readout-row"><span class="readout-k">LAPLACIAN VARIANCE</span><span class="readout-v font-mono" id="advLaplacian">—</span></div>
+            <div class="readout-row"><span class="readout-k">CHANNEL DRIFT</span><span class="readout-v font-mono" id="advDrift">—</span></div>
+            <div class="readout-row"><span class="readout-k">TEXTURE SIGNAL</span><span class="readout-v font-mono" id="advTexture">—</span></div>
+          </div>
+          <button class="editorial-btn small-btn" id="advForensicBtn">Run Forensic Check</button>
+        </div>
+        <div class="instrument-chassis">
+          <div class="chassis-header"><span>SECOND-IMAGE VERIFICATION</span><span class="font-mono">PERCEPTUAL HASH</span></div>
+          <div class="upload-dropzone compact-drop" id="candidateDropzone"><input type="file" id="candidateInput" accept="image/png,image/jpeg,image/webp" hidden><div class="upload-dropzone-inner"><span class="upload-icon">＋</span><span class="upload-label">Choose a candidate image</span><span class="upload-sublabel">Compare it with the uploaded source</span></div></div>
+          <div class="hash-stack" id="candidateResult" style="display:none">
+            <div><span>SOURCE pHASH</span><code id="advSourceHash">—</code></div>
+            <div><span>CANDIDATE pHASH</span><code id="advCandidateHash">—</code></div>
+            <div class="readout-row"><span class="readout-k">HAMMING DISTANCE</span><span class="readout-v font-mono" id="advDistance">—</span></div>
+            <div class="readout-row"><span class="readout-k">SIMILARITY</span><span class="readout-v font-mono" id="advSimilarity">—</span></div>
+            <div class="readout-row"><span class="readout-k">RESULT</span><span class="verdict-tag font-mono" id="advVerdict">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="evidence-grid">
+        <div class="instrument-chassis">
+          <div class="chassis-header"><span>EVIDENCE PACKAGE</span><span class="font-mono">SHA-256</span></div>
+          <div class="readout-row"><span class="readout-k">FILE</span><span class="readout-v font-mono" id="advEvidenceFile">—</span></div>
+          <div class="readout-row"><span class="readout-k">SHA-256</span><span class="readout-v font-mono evidence-hash" id="advSha">—</span></div>
+          <div class="readout-row"><span class="readout-k">pHASH</span><span class="readout-v font-mono" id="advEvidencePhash">—</span></div>
+          <button class="editorial-btn small-btn" id="advEvidenceBtn">Generate Case JSON</button>
+          <button class="editorial-btn small-btn" id="advDownloadBtn" style="display:none">Download Evidence</button>
+        </div>
+        <div class="instrument-chassis">
+          <div class="chassis-header"><span>RESPONSE WORKFLOW</span><span class="font-mono">DRAFT ONLY</span></div>
+          <label class="field-label" for="advTargetUrl">SUSPECTED URL</label><input id="advTargetUrl" class="chassis-input full-input" placeholder="https://example.com/image.jpg">
+          <label class="field-label" for="advOwner">IDENTITY OWNER</label><input id="advOwner" class="chassis-input full-input" placeholder="Owner / project name">
+          <button class="editorial-btn small-btn" id="advNoticeBtn">Prepare Response Draft</button>
+          <textarea id="advNotice" class="notice-output" readonly placeholder="Evidence-based response draft will appear here…"></textarea>
+          <div class="demo-note"><strong>IMPORTANT:</strong> This prepares a draft for human review. It does not automatically send a legal complaint or contact a website.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="editorial-footer border-top">
