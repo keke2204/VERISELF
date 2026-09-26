@@ -1,0 +1,27 @@
+name: VeriSelf Backend Check
+
+on:
+  push:
+    paths:
+      - "apps/backend/**"
+      - ".github/workflows/backend-check.yml"
+  pull_request:
+    paths:
+      - "apps/backend/**"
+      - ".github/workflows/backend-check.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -r apps/backend/requirements.txt
+      - name: Compile Python
+        run: python -m compileall -q apps/backend
+      - name: Import application
+        working-directory: apps/backend
+        run: python -c "from app.main import app; print(app.title, app.version)"
