@@ -1,0 +1,38 @@
+name: Build Updated VeriSelf ZIP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-updated-zip.yml'
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild full project ZIP with latest GitHub Pages files
+        shell: bash
+        run: |
+          set -e
+          rm -rf package
+          mkdir -p package
+          unzip -q veriself-full-project-updated.zip -d package
+          cp index.html package/veriself/github-pages/index.html
+          cp script.js package/veriself/github-pages/script.js
+          cp style.css package/veriself/github-pages/style.css
+          cp logo.svg package/veriself/github-pages/assets/logo.svg
+          cp original.png package/veriself/github-pages/assets/original.png
+          cp cloaked.png package/veriself/github-pages/assets/cloaked.png
+          cp architecture.svg package/veriself/github-pages/assets/architecture.svg
+          cp watermarked.png package/veriself/github-pages/assets/watermarked.png
+          rm -f VeriSelf-UPDATED.zip
+          cd package
+          zip -qr ../VeriSelf-UPDATED.zip veriself
+      - name: Upload updated ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: VeriSelf-UPDATED
+          path: VeriSelf-UPDATED.zip
+          retention-days: 7
