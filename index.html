@@ -332,9 +332,9 @@
       </div>
       <div class="instrument-chassis backend-panel">
         <div class="chassis-header"><span>BACKEND CONNECTION</span><span class="font-mono" id="apiStatus">NOT CONFIGURED</span></div>
-        <p class="specimen-caption">Optional live FastAPI connection. The static demo still works locally in the browser.</p>
+        <p class="specimen-caption">Live FastAPI connection. Source registration and candidate comparison use the deployed backend.</p>
         <div class="field-control">
-          <input type="url" id="apiBaseUrl" class="chassis-input" placeholder="https://your-veriself-api.example.com">
+          <input type="url" id="apiBaseUrl" class="chassis-input" placeholder="https://veriself.onrender.com">
           <button type="button" class="field-action-btn" id="saveApiBtn">SAVE</button>
           <button type="button" class="field-action-btn" id="testApiBtn">TEST</button>
         </div>
@@ -390,6 +390,6 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="./script.js?v=20260926-3"></script>
-<script src="./backend-bridge.js?v=20260926-1"></script>
+<script src="./backend-bridge.js?v=20260926-2"></script>
 </body>
 </html>
