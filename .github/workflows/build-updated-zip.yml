@@ -5,6 +5,14 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/build-updated-zip.yml'
+      - 'index.html'
+      - 'script.js'
+      - 'style.css'
+      - 'logo.svg'
+      - 'architecture.svg'
+      - 'original.png'
+      - 'cloaked.png'
+      - 'watermarked.png'
   workflow_dispatch:
 
 jobs:
