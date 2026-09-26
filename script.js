@@ -152,6 +152,7 @@ const UPLOAD_MAX_DIM = 720;
 let faceApiModelsPromise = null;
 let workCanvas = null;   // capped-resolution copy of the uploaded image
 let cloakCanvas = null;  // noise-perturbed version of workCanvas
+let sourceFile = null;   // original uploaded file, used for SHA-256 evidence
 
 function initUploadDemo() {
   const dropzone = document.getElementById('uploadDropzone');
@@ -224,6 +225,7 @@ function handleUploadedFile(file) {
     return;
   }
 
+  sourceFile = file;
   setUploadStatus('Processing your photo locally…');
 
   const reader = new FileReader();
@@ -318,6 +320,10 @@ function resetSpecimenToDefault() {
 
   workCanvas = null;
   cloakCanvas = null;
+  sourceFile = null;
+  advancedCandidateHash = null;
+  advancedForensic = null;
+  advancedCase = null;
 }
 
 /* 5a. Texture-aware gradient-weighted noise ("cloak") effect — real, on-device pixel math */
