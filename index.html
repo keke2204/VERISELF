@@ -330,6 +330,19 @@
           </div>
         </div>
       </div>
+      <div class="instrument-chassis backend-panel">
+        <div class="chassis-header"><span>BACKEND CONNECTION</span><span class="font-mono" id="apiStatus">NOT CONFIGURED</span></div>
+        <p class="specimen-caption">Optional live FastAPI connection. The static demo still works locally in the browser.</p>
+        <div class="field-control">
+          <input type="url" id="apiBaseUrl" class="chassis-input" placeholder="https://your-veriself-api.example.com">
+          <button type="button" class="field-action-btn" id="saveApiBtn">SAVE</button>
+          <button type="button" class="field-action-btn" id="testApiBtn">TEST</button>
+        </div>
+        <div class="readout-row"><span class="readout-k">BACKEND MEDIA ID</span><span class="readout-v font-mono" id="apiMediaId">—</span></div>
+        <button type="button" class="editorial-btn small-btn" id="syncSourceBtn">Register Source in Backend</button>
+        <button type="button" class="editorial-btn small-btn" id="syncCandidateBtn">Compare Candidate via Backend</button>
+        <div class="demo-note">The backend stores image metadata and hashes. It does not perform identity recognition or automatically send legal complaints.</div>
+      </div>
       <div class="evidence-grid">
         <div class="instrument-chassis">
           <div class="chassis-header"><span>EVIDENCE PACKAGE</span><span class="font-mono">SHA-256</span></div>
