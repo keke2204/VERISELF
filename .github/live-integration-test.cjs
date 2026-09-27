@@ -24,6 +24,11 @@ const png1x1 = Buffer.from(
 
     await page.locator('#apiStatus').waitFor({ state: 'visible', timeout: 15000 });
 
+    // Test the actual visible Protect Photo picker, not only the hidden file input.
+    const picker = page.waitForEvent('filechooser', { timeout: 10000 });
+    await page.locator('#uploadDropzone').click();
+    await picker;
+
     // Test the actual frontend source-upload control.
     await page.locator('#uploadInput').setInputFiles({
       name: 'browser-source.png',
