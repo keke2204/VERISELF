@@ -175,13 +175,11 @@ function initUploadDemo() {
 
   if (!dropzone || !fileInput) return;
 
-  const openPicker = (e) => {
-    if (e) e.preventDefault();
-    fileInput.click();
-  };
-  dropzone.addEventListener('click', openPicker);
   dropzone.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') openPicker(e);
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
   });
   fileInput.addEventListener('change', (e) => {
     const file = e.target.files && e.target.files[0];
