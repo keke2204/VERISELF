@@ -193,14 +193,28 @@ function initUploadDemo() {
     fileInput.value = '';
     resetSpecimenToDefault();
   });
-  if (downloadBtn) downloadBtn.addEventListener('click', () => {
-    if (!cloakCanvas) return;
-    const link = document.createElement('a');
-    link.href = cloakCanvas.toDataURL('image/png');
-    link.download = 'veriself-cloaked.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  if (downloadBtn) downloadBtn.addEventListener('click', async () => {
+    if (!cloakCanvas) {
+      setUploadStatus('Upload a photo first to create the protected copy.');
+      return;
+    }
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        cloakCanvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Could not create the protected image.')), 'image/png');
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'veriself-protected.png';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setUploadStatus('Protected photo ready — downloaded as veriself-protected.png.');
+    } catch (err) {
+      console.error('Protected photo download failed:', err);
+      setUploadStatus('Could not create the protected photo. Please upload the image again.');
+    }
   });
 
   const biometricBtn = document.getElementById('runBiometricBtn');
@@ -252,8 +266,14 @@ function handleUploadedFile(file) {
 }
 
 function processUploadedImage(img) {
-  // 1. Draw to a capped-resolution working canvas (keeps things fast & consistent)
-  const scale = Math.min(1, UPLOAD_MAX_DIM / Math.max(img.naturalWidth, img.naturalHeight));
+  if (!img || !img.naturalWidth || !img.naturalHeight) {
+    setUploadStatus('Could not process that photo — the image has no readable dimensions.');
+    return;
+  }
+
+  try {
+    // 1. Draw to a capped-resolution working canvas (keeps things fast & consistent)
+    const scale = Math.min(1, UPLOAD_MAX_DIM / Math.max(img.naturalWidth, img.naturalHeight));
   const w = Math.max(1, Math.round(img.naturalWidth * scale));
   const h = Math.max(1, Math.round(img.naturalHeight * scale));
 
@@ -300,8 +320,16 @@ function processUploadedImage(img) {
 
   setUploadStatus('Done — compare the photo above, then open Biometric Scan.');
 
-  // 7. Run the live biometric landmark scan
-  runBiometricScan();
+    // 7. Run the live biometric landmark scan
+    runBiometricScan();
+  } catch (err) {
+    console.error('Photo protection failed:', err);
+    workCanvas = null;
+    cloakCanvas = null;
+    const downloadRow = document.getElementById('plateDownloadRow');
+    if (downloadRow) downloadRow.style.display = 'none';
+    setUploadStatus('Photo protection failed — please choose a JPG, PNG, or WebP image.');
+  }
 }
 
 function resetSpecimenToDefault() {
