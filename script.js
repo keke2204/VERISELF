@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initComparisonPlate();
   initHashComparator();
   initUploadDemo();
+  initProtectPhotoAction();
 });
 
 /* 1. Theme Management (Pure Monochrome Invert) */
@@ -31,6 +32,31 @@ function initTheme() {
     themeToggle.addEventListener('click', (event) => {
       event.preventDefault();
       applyTheme(root.classList.contains('light') ? 'dark' : 'light');
+    });
+  }
+}
+
+/* 2. Protect Photo navigation + picker fallback */
+function initProtectPhotoAction() {
+  const protectButton = document.getElementById('protectPhotoBtn');
+  const protectSection = document.getElementById('protect');
+  const dropzone = document.getElementById('uploadDropzone');
+  const fileInput = document.getElementById('uploadInput');
+
+  if (protectButton && protectSection) {
+    protectButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      protectSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.setTimeout(() => fileInput?.click(), 250);
+    });
+  }
+
+  if (dropzone && fileInput) {
+    dropzone.addEventListener('pointerup', (event) => {
+      if (event.button !== 0) return;
+      if (event.target === fileInput) return;
+      event.preventDefault();
+      fileInput.click();
     });
   }
 }
