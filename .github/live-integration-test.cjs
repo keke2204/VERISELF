@@ -22,57 +22,69 @@ const png1x1 = Buffer.from(
     const response = await page.goto(SITE, { waitUntil: 'networkidle', timeout: 60000 });
     if (!response || !response.ok()) throw new Error('GitHub Pages returned an invalid response.');
 
-    await page.waitForFunction(() => typeof window.fetch === 'function');
+    await page.locator('#apiStatus').waitFor({ state: 'visible', timeout: 15000 });
 
-    const health = await page.evaluate(async api => {
-      const r = await fetch(api + '/api/v1/health', { cache: 'no-store' });
-      return { status: r.status, body: await r.json() };
-    }, API);
+    // Test the actual frontend source-upload control.
+    await page.locator('#uploadInput').setInputFiles({
+      name: 'browser-source.png',
+      mimeType: 'image/png',
+      buffer: png1x1
+    });
 
-    if (health.status !== 200 || health.body.status !== 'healthy') {
-      throw new Error('Browser health check failed: ' + JSON.stringify(health));
+    await page.waitForFunction(
+      () => /SOURCE REGISTERED|REGISTERING SOURCE|ONLINE|ERROR|OFFLINE|TIMEOUT/.test(
+        document.querySelector('#apiStatus')?.textContent || ''
+      ),
+      null,
+      { timeout: 65000 }
+    );
+
+    await page.waitForFunction(
+      () => !!document.querySelector('#apiMediaId')?.textContent.trim() &&
+            document.querySelector('#apiMediaId')?.textContent.trim() !== '—',
+      null,
+      { timeout: 65000 }
+    );
+
+    const mediaId = await page.locator('#apiMediaId').textContent();
+    if (!mediaId.trim() || mediaId.trim() === '—') {
+      throw new Error('Frontend source upload did not produce a backend media ID.');
     }
 
-    const result = await page.evaluate(async ({ api, bytes }) => {
-      const binary = Uint8Array.from(atob(bytes), c => c.charCodeAt(0));
-      const file = new File([binary], 'browser-test.png', { type: 'image/png' });
-      const form = new FormData();
-      form.append('file', file);
-      const register = await fetch(api + '/api/v1/media/register', {
-        method: 'POST',
-        body: form
-      });
-      const registerBody = await register.json();
-      if (!register.ok) return { stage: 'register', status: register.status, body: registerBody };
+    // Test the actual frontend candidate-upload control.
+    await page.locator('#candidateInput').setInputFiles({
+      name: 'browser-candidate.png',
+      mimeType: 'image/png',
+      buffer: png1x1
+    });
 
-      const compareForm = new FormData();
-      compareForm.append('source_id', String(registerBody.id));
-      compareForm.append('candidate', file);
-      const compare = await fetch(api + '/api/v1/media/compare', {
-        method: 'POST',
-        body: compareForm
-      });
-      return {
-        stage: 'compare',
-        status: compare.status,
-        body: await compare.json()
-      };
-    }, { api: API, bytes: png1x1.toString('base64') });
+    await page.waitForFunction(
+      () => document.querySelector('#advVerdict')?.textContent?.includes('CLOSE PERCEPTUAL MATCH'),
+      null,
+      { timeout: 65000 }
+    );
 
-    if (result.status !== 200 || result.body.result !== 'CLOSE PERCEPTUAL MATCH') {
-      throw new Error('Browser POST integration failed: ' + JSON.stringify(result));
+    const verdict = await page.locator('#advVerdict').textContent();
+    const distance = await page.locator('#advDistance').textContent();
+    const similarity = await page.locator('#advSimilarity').textContent();
+    const status = await page.locator('#apiStatus').textContent();
+
+    if (!verdict.includes('CLOSE PERCEPTUAL MATCH')) {
+      throw new Error('Frontend candidate comparison did not display the backend result.');
     }
 
-    const panelState = await page.locator('#apiStatus').textContent();
-    console.log('LIVE INTEGRATION PASSED');
-    console.log('Backend health:', JSON.stringify(health.body));
-    console.log('Browser POST comparison:', JSON.stringify(result.body));
-    console.log('Frontend status:', panelState);
-    if (errors.length) console.log('Non-fatal browser console errors:', errors);
+    console.log('REAL FRONTEND -> BACKEND FLOW PASSED');
+    console.log('Media ID:', mediaId.trim());
+    console.log('Distance:', distance);
+    console.log('Similarity:', similarity);
+    console.log('Verdict:', verdict);
+    console.log('API status:', status);
+    if (errors.length) console.log('Browser console errors:', errors);
   } finally {
     await browser.close();
   }
 })().catch(err => {
+  console.error('REAL FRONTEND -> BACKEND FLOW FAILED');
   console.error(err);
   process.exit(1);
 });
