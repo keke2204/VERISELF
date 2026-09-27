@@ -51,14 +51,6 @@ function initProtectPhotoAction() {
     });
   }
 
-  if (dropzone && fileInput) {
-    dropzone.addEventListener('pointerup', (event) => {
-      if (event.button !== 0) return;
-      if (event.target === fileInput) return;
-      event.preventDefault();
-      fileInput.click();
-    });
-  }
 }
 
 /* 2. Before / After Comparison Plate (Editorial Specimen Slider) */
